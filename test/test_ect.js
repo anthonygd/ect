@@ -10,7 +10,7 @@ contract('EthereumColumbusToken', function(accounts) {
     assert.ok(you, 'no secondary account')
   })
 
-  it('should be constructable', async function() {
+  it('should start with no tokens', async function() {
     assert.equal(await instance.totalSupply.call(), 0)
   })
 
@@ -37,9 +37,27 @@ contract('EthereumColumbusToken', function(accounts) {
     await instance.mint(100)
     assert.equal(await instance.balanceOf(me), 100)
 
-    await instance.transfer(you, 150)
+    try {
+        await instance.transfer(you, 150)
+    } catch (err) {}
 
     assert.equal(await instance.balanceOf(me), 100)
     assert.equal(await instance.balanceOf(you), 0)
+  })
+
+  it('should not be able to transfer more than approved amount', async function() {
+    await instance.mint(1000)  // me -> 1000, you -> 0
+    await instance.approve(you, 100)  // you approved for 100
+
+    await instance.transferFrom(me, you, 50)  // me -> 950, you -> 50, approved -> 50
+    assert.equal(await instance.balanceOf(you), 50)
+
+    await instance.transferFrom(me, you, 50)  // me -> 900, you -> 100, approved -> 0
+    assert.equal(await instance.balanceOf(you), 100)
+
+    try {
+        await instance.transferFrom(me, you, 1)  // error, approved == 0
+    } catch (err) {}
+    assert.equal(await instance.balanceOf(you), 100)
   })
 })
