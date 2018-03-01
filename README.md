@@ -33,10 +33,9 @@ $ truffle --network ganache console
 truffle(ganache)> migrate
 ~~~~
 
-Possible networks are configured in title-tokens/tuffle.js
+Possible networks are configured in ect/truffle.js
 
 * If you don't specify '--network ganache' it will default to develop.  This works fine for the most part and is not persistent.
-* You can specify '--network geth' if you'd like.  You need to have geth configured with RPC and mining.  The project includes a genesis.json but I'm not documenting how to use it.  This has the advantage/disadvantage of being a real, persistent, industrial strength blockchain implementation.
 
 ## develop
 
