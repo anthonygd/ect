@@ -61,9 +61,9 @@ Using network 'ganache'.
 truffle(ganache)>
 ~~~~
 
-Now that you are confident things should work, use your editor of choice and edit the .sol files living in title-tokens/contracts.
+Now that you are confident things should work, use your editor of choice and edit the .sol files living in ect/contracts.
 
-If you create a new contract you'll need to create a new JavaScript migration script for deploying it.  Use the naming convention title-tokens/migrations/number_contract_name_migration.js.
+If you create a new contract you'll need to create a new JavaScript migration script for deploying it.  Use the naming convention ect/migrations/number_contract_name_migration.js.
 
 Once happy with your changes (and you've rerun the tests) you can redeploy:
 ~~~~
@@ -72,7 +72,7 @@ truffle(ganache)> migrate
 
 The migrate command will take care of
 1. Did the .sol file change?
-2. If so compile it to JSON format in title-tokens/build/contracts/foo.json
+2. If so compile it to JSON format in ect/build/contracts/foo.json
 3. Has something with an identical checksum already been deployed?
 4. If not, then deploy.
 
