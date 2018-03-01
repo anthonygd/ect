@@ -1,4 +1,4 @@
-# title-tokens
+# EthereumColumbusToken
 Smart contract development
 
 ## installation
